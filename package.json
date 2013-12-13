@@ -1,7 +1,7 @@
 {
   "name": "grunt-wow",
   "description": "Increase developer morale.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/elidupuis/grunt-wow",
   "author": {
     "name": "Eli Dupuis",
