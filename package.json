@@ -20,7 +20,9 @@
       "url": "https://github.com/elidupuis/grunt-wow/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "Gruntfile.js",
+  "files": [
+    "tasks/wow.js"
+  ],
   "engines": {
     "node": ">= 0.8.0"
   },
