@@ -1,0 +1,49 @@
+{
+  "name": "grunt-wow",
+  "description": "Increase developer morale.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/elidupuis/grunt-wow",
+  "author": {
+    "name": "Eli Dupuis",
+    "email": "elidupuis@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elidupuis.grunt-wow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elidupuis/grunt-wow/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/elidupuis/grunt-wow/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.2"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.2"
+  },
+  "keywords": [
+    "gruntplugin",
+    "wow"
+  ],
+  "dependencies": {
+    "request": "~2.29.0",
+    "underscore": "~1.5.2",
+    "Faker": "~0.5.11",
+    "chalk": "~0.3.0"
+  }
+}
