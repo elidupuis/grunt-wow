@@ -63,8 +63,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Inspired by:
 
-- [https://github.com/iammerrick/grunt-compliment](grunt-compliment)
-- [https://github.com/jaredstehler/grunt-wisdom](grunt-wisdom)
+- [grunt-compliment](https://github.com/iammerrick/grunt-compliment)
+- [grunt-wisdom](https://github.com/jaredstehler/grunt-wisdom)
 
 ## Release History
 _(Nothing yet)_
