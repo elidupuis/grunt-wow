@@ -16,10 +16,10 @@ var style = chalk.white.bgGreen.bold;
 module.exports = function(grunt) {
 
   function output (msg) {
-    var str = new Array(msg.length+3).join(' ');
+    var str = grunt.util.repeat(msg.length+2, ' ');
     grunt.log.writeln();
     grunt.log.writeln(style(str));
-    grunt.log.writeln(style([' ', msg, ' '].join('')));
+    grunt.log.writeln(style(' ' + msg + ' '));
     grunt.log.writeln(style(str));
   }
 
@@ -64,9 +64,9 @@ module.exports = function(grunt) {
       return false;
     }
 
-    // simple array passed in by user
-    // no need to load external file.
-    if (_.isArray(options.source)) {
+    // simple array passed in by user. no need to load external file.
+    if (grunt.util.kindOf(options.source) === 'array') {
+      grunt.verbose.ok('Using array literal passed in as source option.');
       chooseSentence(options.source);
       done();
       return;
