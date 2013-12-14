@@ -7,6 +7,7 @@
  */
 
 'use strict';
+var fs = require('fs');
 var request = require('request');
 var _ = require('underscore');
 var Faker = require('Faker');
@@ -14,6 +15,8 @@ var chalk = require('chalk');
 var style = chalk.white.bgGreen.bold;
 
 module.exports = function(grunt) {
+
+  var cache = '.grunt/grunt-wow/choices';
 
   function output (msg) {
     var str = grunt.util.repeat(msg.length+2, ' ');
@@ -53,10 +56,15 @@ module.exports = function(grunt) {
     output(sentence);
   }
 
+  function processFile (file, options) {
+    return _.compact(file.trim().split(options.delimiter));
+  }
+
   grunt.registerMultiTask('wow', 'Increase developer morale.', function() {
     var done = this.async();
     var options = this.options({
-      'delimiter': grunt.util.linefeed
+      'delimiter': grunt.util.linefeed,
+      'cache': 300
     });
 
     if (!options.source) {
@@ -72,6 +80,22 @@ module.exports = function(grunt) {
       return;
     }
 
+    // check if cache exists
+    if (grunt.file.exists(cache)) {
+      var stats = fs.statSync(cache);
+      var cacheAge = Date.now() - stats.mtime.getTime();
+      var useCache = cacheAge/1000 < options.cache;
+      grunt.verbose.ok('Cache exists', useCache ? 'and will be used' : 'but is old (' + cacheAge/1000 + ' seconds)');
+
+      if (useCache) {
+        var file = grunt.file.read(cache);
+        var choices = processFile(file, options);
+        chooseSentence(choices);
+        done();
+        return;
+      }
+    }
+
     // fetch external text file
     request(options.source, function (error, response, body) {
 
@@ -81,9 +105,10 @@ module.exports = function(grunt) {
       }
 
       if (!error && response.statusCode === 200) {
-        var sentences = _.compact(body.trim().split(options.delimiter));
+        grunt.verbose.ok('Successfully received external file');
+        var sentences = processFile(body, options);
+        grunt.file.write(cache, body);
         chooseSentence(sentences);
-
         done(); // finish async
       }
     });
