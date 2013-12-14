@@ -82,7 +82,7 @@ module.exports = function(grunt) {
     }
 
     // check if cache exists
-    if (grunt.file.exists(cache)) {
+    if (grunt.file.exists(cache) && options.cache) {
       var stats = fs.statSync(cache);
       var cacheAge = Date.now() - stats.mtime.getTime();
       var useCache = cacheAge/1000 < options.cache;
@@ -109,8 +109,10 @@ module.exports = function(grunt) {
       if (!error && response.statusCode === 200) {
         grunt.verbose.ok('Successfully received external file');
         var sentences = processFile(body, options);
-        grunt.file.write(cache, body);
         chooseSentence(sentences);
+        if (options.cache) {
+          grunt.file.write(cache, body);
+        }
         done(); // finish async
       }
     });
