@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     });
 
     if (!options.source) {
-      grunt.log.error('You must have a source option specified.');
+      grunt.log.error('You must specify a source option.');
       return false;
     }
 
@@ -99,9 +99,10 @@ module.exports = function(grunt) {
 
     // fetch external text file
     request(options.source, function (error, response, body) {
+      grunt.verbose.ok('Fetching external file', options.source);
 
-      if (response.statusCode !== 200) {
-        grunt.log.error('Failed to load source file', options.source);
+      if (error || response.statusCode !== 200) {
+        grunt.log.debug('Failed to load source file', options.source);
         return false;
       }
 
