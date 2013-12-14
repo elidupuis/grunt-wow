@@ -25,9 +25,15 @@ module.exports = function(grunt) {
 
   function madlib (str) {
     var result = str;
-    result = result.replace(/{\s*noun\s*}/i, Faker.random.bs_noun());
-    result = result.replace(/{\s*adj\s*}/i, Faker.random.bs_adjective());
-    result = result.replace(/{\s*buzz\s*}/i, Faker.random.bs_buzz());
+    result = result.replace(/{\s*noun\s*}/ig, function() {
+      return Faker.random.bs_noun();
+    });
+    result = result.replace(/{\s*adj\s*}/ig, function() {
+      return Faker.random.bs_adjective();
+    });
+    result = result.replace(/{\s*buzz\s*}/ig, function() {
+      return Faker.random.bs_buzz();
+    });
     return result;
   }
 
