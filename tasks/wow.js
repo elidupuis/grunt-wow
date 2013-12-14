@@ -34,6 +34,9 @@ module.exports = function(grunt) {
     result = result.replace(/{\s*buzz\s*}/ig, function() {
       return Faker.random.bs_buzz();
     });
+    result = result.replace(/{\s*num\s*}/ig, function() {
+      return Faker.Helpers.randomNumber(1000);
+    });
     return result;
   }
 
@@ -41,7 +44,7 @@ module.exports = function(grunt) {
   function chooseSentence (list) {
     var index = _.random(list.length - 1);
     var sentence = list[index];
-    var madlibRequired = /{\s*(?:noun|adj|buzz)\s*}/i.test(sentence);
+    var madlibRequired = /{\s*(?:noun|adj|buzz|num)\s*}/i.test(sentence);
 
     if (madlibRequired) {
       sentence = madlib(sentence);
