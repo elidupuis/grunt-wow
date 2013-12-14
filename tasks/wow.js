@@ -56,7 +56,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('wow', 'Increase developer morale.', function() {
     var done = this.async();
     var options = this.options({
-      'delimiter': '\n'
+      'delimiter': grunt.util.linefeed
     });
 
     if (!options.source) {
