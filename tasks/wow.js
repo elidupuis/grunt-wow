@@ -55,7 +55,9 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('wow', 'Increase developer morale.', function() {
     var done = this.async();
-    var options = this.options();
+    var options = this.options({
+      'delimiter': '\n'
+    });
 
     if (!options.source) {
       grunt.log.error('You must have a source option specified.');
@@ -79,7 +81,7 @@ module.exports = function(grunt) {
       }
 
       if (!error && response.statusCode === 200) {
-        var sentences = _.compact(body.trim().split('\n'));
+        var sentences = _.compact(body.trim().split(options.delimiter));
         chooseSentence(sentences);
 
         done(); // finish async
