@@ -67,4 +67,5 @@ Inspired by:
 - [https://github.com/jaredstehler/grunt-wisdom](grunt-wisdom)
 
 ## Release History
-_(Nothing yet)_
+
+- 2013-12-12   v0.1.2   Initial release (npm noob, messed up SEM)
