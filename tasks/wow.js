@@ -76,6 +76,7 @@ module.exports = function(grunt) {
     if (grunt.util.kindOf(options.source) === 'array') {
       grunt.verbose.ok('Using array literal passed in as source option.');
       chooseSentence(options.source);
+      if (grunt.file.exists(cache)) { grunt.file.delete(cache); }
       done();
       return;
     }
